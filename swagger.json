@@ -1,0 +1,456 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "Api laboratory",
+		"description": "Test Dasa",
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/licenses/MIT"
+		}
+	},
+	"host": "localhost:8080",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "Laboratories",
+			"description": "API for Laboratories in the system"
+		},
+		{
+			"name": "Examinations",
+			"description": "API for Examinations in the system"
+		},
+		{
+			"name": "Link",
+			"description": "Link to laboratory to Examination"
+		}
+	],
+	"schemes": [
+		"http"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/laboratoryByExamination": {
+			"post": {
+				"tags": [
+					"Link"
+				],
+				"description": "Create references examination to laboratories",
+				"parameters": [
+					{
+						"name": "ExaminationLaboratory",
+						"in": "body",
+						"description": "Link that we want to create",
+						"schema": {
+							"$ref": "#/definitions/ExaminationLaboratory"
+						}
+					}
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "New link is created",
+						"schema": {
+							"$ref": "#/definitions/ExaminationLaboratory"
+						}
+					}
+				}
+			}
+		},
+		"/laboratory/batch": {
+			"post": {
+				"tags": [
+					"Laboratories"
+				],
+				"description": "Create news Laboratories in system",
+				"parameters": [
+					{
+						"name": "laboratory",
+						"in": "body",
+						"description": "Laboratories that we want to create",
+						"schema": {
+							"$ref": "#/definitions/Laboratories"
+						}
+					}
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "New Laboratories is created",
+						"schema": {
+							"$ref": "#/definitions/Laboratories"
+						}
+					}
+				}
+			}
+		},
+		"/laboratory": {
+			"post": {
+				"tags": [
+					"Laboratories"
+				],
+				"description": "Create new Laboratory in system",
+				"parameters": [
+					{
+						"name": "laboratory",
+						"in": "body",
+						"description": "Laboratory that we want to create",
+						"schema": {
+							"$ref": "#/definitions/Laboratory"
+						}
+					}
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "New Laboratory is created",
+						"schema": {
+							"$ref": "#/definitions/Laboratory"
+						}
+					}
+				}
+			},
+			"get": {
+				"tags": [
+					"Laboratories"
+				],
+				"description": "Get Lbaoratories",
+				"parameters": [
+					{
+						"name": "name",
+						"in": "query",
+						"type": "string",
+						"required": false,
+						"description": "Name laboratory"
+					},
+					{
+						"name": "status",
+						"in": "query",
+						"type": "string",
+						"required": false,
+						"description": "Status laboratory"
+					},
+					{
+						"name": "address",
+						"in": "query",
+						"type": "string",
+						"required": false,
+						"description": "Address laboratory"
+					}
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Return all laboratories",
+						"schema": {
+							"$ref": "#/definitions/Laboratories"
+						}
+					}
+				}
+			}
+		},
+		"/laboratory/{id}": {
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"description": "ID of laboratory that we want to find",
+					"type": "integer"
+				}
+			],
+			"get": {
+				"summary": "Get unique Laboratory",
+				"tags": [
+					"Laboratories"
+				],
+				"responses": {
+					"200": {
+						"description": "Laboratory",
+						"schema": {
+							"$ref": "#/definitions/Laboratory"
+						}
+					}
+				}
+			},
+			"delete": {
+				"summary": "Delete laboaratory with given ID",
+				"tags": [
+					"Laboratories"
+				],
+				"responses": {
+					"200": {
+						"description": "Laboratory is deleted"
+					}
+				}
+			},
+			"put": {
+				"summary": "Update Laboratory",
+				"tags": [
+					"Laboratories"
+				],
+				"parameters": [
+					{
+						"name": "laboratory",
+						"in": "body",
+						"description": "Laboratory that we want to update",
+						"schema": {
+							"$ref": "#/definitions/Laboratory"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Update Laboratory by id",
+						"schema": {
+							"$ref": "#/definitions/Laboratory"
+						}
+					}
+				}
+			}
+		},
+		"/examination/batch": {
+			"post": {
+				"tags": [
+					"Examinations"
+				],
+				"description": "Create news Examinations in system",
+				"parameters": [
+					{
+						"name": "examinations",
+						"in": "body",
+						"description": "Examinations that we want to create",
+						"schema": {
+							"$ref": "#/definitions/Examinations"
+						}
+					}
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "New Examinations is created",
+						"schema": {
+							"$ref": "#/definitions/Examinations"
+						}
+					}
+				}
+			}
+		},
+		"/examination": {
+			"post": {
+				"tags": [
+					"Examinations"
+				],
+				"description": "Create new Examination in system",
+				"parameters": [
+					{
+						"name": "Examination",
+						"in": "body",
+						"description": "Examination that we want to create",
+						"schema": {
+							"$ref": "#/definitions/Examination"
+						}
+					}
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "New Examination is created",
+						"schema": {
+							"$ref": "#/definitions/Examination"
+						}
+					}
+				}
+			},
+			"get": {
+				"tags": [
+					"Examinations"
+				],
+				"description": "Get Examination",
+				"parameters": [
+					{
+						"name": "name",
+						"in": "query",
+						"type": "string",
+						"required": false,
+						"description": "Name Examination"
+					},
+					{
+						"name": "status",
+						"in": "query",
+						"type": "string",
+						"required": false,
+						"description": "Status Examination"
+					},
+					{
+						"name": "type",
+						"in": "query",
+						"type": "string",
+						"required": false,
+						"description": "Type Examination"
+					}
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Return all examinations",
+						"schema": {
+							"$ref": "#/definitions/Examinations"
+						}
+					}
+				}
+			}
+		},
+		"/examination/{id}": {
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"description": "ID of examination that we want to find",
+					"type": "integer"
+				}
+			],
+			"get": {
+				"summary": "Get unique examination",
+				"tags": [
+					"Examinations"
+				],
+				"responses": {
+					"200": {
+						"description": "examination",
+						"schema": {
+							"$ref": "#/definitions/Examination"
+						}
+					}
+				}
+			},
+			"delete": {
+				"summary": "Delete examination with given ID",
+				"tags": [
+					"Examinations"
+				],
+				"responses": {
+					"200": {
+						"description": "Examination is deleted"
+					}
+				}
+			},
+			"put": {
+				"summary": "Update Examination",
+				"tags": [
+					"Examinations"
+				],
+				"parameters": [
+					{
+						"name": "examination",
+						"in": "body",
+						"description": "Examination that we want to update",
+						"schema": {
+							"$ref": "#/definitions/Examination"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Update Examination by id",
+						"schema": {
+							"$ref": "#/definitions/Examination"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Laboratory": {
+			"required": [
+				"name",
+				"status",
+				"address"
+			],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"uniqueItems": true
+				},
+				"name": {
+					"type": "string"
+				},
+				"address": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string"
+				}
+			}
+		},
+		"Laboratories": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/Laboratory"
+			}
+		},
+		"Examination": {
+			"required": [
+				"name",
+				"status",
+				"type"
+			],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"uniqueItems": true
+				},
+				"name": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string"
+				}
+			}
+		},
+		"Examinations": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/Examination"
+			}
+		},
+		"ExaminationLaboratory": {
+			"required": [
+				"laboratoryId",
+				"examinationId"
+			],
+			"properties": {
+				"examinationId": {
+					"type": "integer"
+				},
+				"laboratoryId": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}

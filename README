@@ -1,0 +1,23 @@
+# API LABORATORIO
+
+## api desenvolvida para o teste da WA
+
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git] [Docker] [docker-compose]
+
+### 🎲 Rodando o Back End
+
+```bash
+# Clone este repositório
+$ git clone https://github.com/pafrtds/api-laboratorio.git
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd api-laboratorio
+
+# Execute o docker-compose
+$ docker-compose up
+
+# O servidor inciará na porta:8080 - acesse <http://localhost:8080>
+# Acesse http://localhost:8080/api-docs/ para ver a documentação

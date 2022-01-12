@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  api:
+    build: .
+    volumes:
+      - .:/project
+    ports:
+      - 8080:8080
+      - 9229:9229
+    working_dir: "/project"
+    command: bash -c "npm install && npm install global npx && npx sequelize-cli db:migrate && npm start"
+    environment:
+      AWS_ACCESS_KEY_ID: dev
+      AWS_SECRET_ACCESS_KEY: dev
+    links:
+      - db
+  db:
+    image: postgres:10.9
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: dev
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dev"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    command: postgres -c 'shared_buffers=256MB' -c 'max_connections=2000'
+volumes:
+  pgdata:
+  mongodata:
